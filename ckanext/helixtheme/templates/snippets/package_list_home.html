@@ -14,10 +14,14 @@ Example:
   {% snippet 'snippets/package_list_home.html', packages=c.datasets %}
 
 #}
-{% if packages %}
-  <div class="col-sm-12">
+<div class="col-sm-12">
+{% if 3>5 %}
+  
     {% for package in packages[:3] %} 
         {% snippet 'snippets/package_item_home.html', package=package, item_class=item_class, hide_resources=false, banner=banner, truncate=truncate, truncate_title=truncate_title %}
     {% endfor %}
-  </ul>
+  {# More button#}
+  <div class="latest-dataset-more-pill">
+    <a href="{{ h.url_for(controller='package', action='search')}}">{{_('MORE')}}</a>
+  </div>
 {% endif %}

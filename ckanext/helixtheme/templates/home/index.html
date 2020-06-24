@@ -14,11 +14,8 @@
       {# The .header-image class hides the main text and uses image replacement for the title #}
 
 
-      <a href="https://hellenicdataservice.gr/main/">
-        <img class="data-logo" src="{{ h.url_for_static('/images/Data-logo.svg') }}" alt="{{ g.site_title }} Logo" />
-      </a>
-      <a >
-        <img class="eu-logo" src="{{ h.url_for_static('/images/jpg/eu-logo.jpg') }}"  />
+      <a href="{{ h.url('home.index') }}">
+        <img class="data-logo" src="{{ h.url_for_static('/images/png/climpact-logo.png') }}" alt="{{ g.site_title }} Logo" />
       </a>
 
 
@@ -215,10 +212,7 @@
           {% snippet 'snippets/package_list_home.html', packages =
           h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
 
-          {# More button#}
-          <div class="latest-dataset-more-pill">
-            <a href="{{ h.url_for(controller='package', action='search')}}">{{_('MORE')}}</a>
-          </div>
+          
 
           {% endblock %}
 
