@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block page_primary_action %}
-  {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn-primary btn-manage', icon='plus' %}
+  {% link_for _('Add new resource'), controller='package', action='new_resource', id=c.pkg_dict.name, class_='btn btn--simple btn-primary btn-manage', icon='plus' %}
 {% endblock %}
 
 {% block primary_content_inner %}
   {% if pkg.resources %}
-    <div class="package-resources edit"{% if has_reorder %} data-module="resource-reorder" data-module-id="{{ pkg.id }}"{% endif %}>
+    <div class="package-resources edit"{% if has_reorder %} data-module="" data-module-id="{{ pkg.id }}"{% endif %}>
       {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
       <div class="package-resource-list">
       {% for resource in pkg.resources %}

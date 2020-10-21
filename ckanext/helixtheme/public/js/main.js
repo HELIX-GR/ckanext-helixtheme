@@ -1,3 +1,4 @@
+
 this.ckanext || (this.ckanext = {})
 this.ckanext.helix || (this.ckanext.helix = {})
 
@@ -92,7 +93,13 @@ function init() {
             //addClass('breadcrumb-hide-text');
         });
     });
-    
+
+    $('.has-submenu').mouseover(function() {
+        this.header_height = $(this).find('.submenu').outerHeight();
+        document.documentElement.style.setProperty('--header-height-open', `${this.header_height}px`);
+        // document.documentElement.style.setProperty('--header-height', `${this.header_height}px`);
+      });
+
     //bread_items.on('mouseenter', function(){
         //$(this).removeClass('breadcrumb-hide-text');
     //});

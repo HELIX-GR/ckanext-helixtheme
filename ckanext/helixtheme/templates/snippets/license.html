@@ -1,22 +1,24 @@
+<div class="page__sidebar__section">
 {% if pkg_dict.license_id %}
   {% if not text_only %}
-  <h5 class="side-heading less-top ">
-    {{ _('License') }}</h5>
-    <section class="license">
+  <div class="page__sidebar__section__title">
+    {{ _('License') }}</div>
+    <section class="page__sidebar__section__text">
   {% endif %}
   {% if 'license_url' in pkg_dict %}
-    <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img><a href="{{ pkg_dict.license_url }}" rel="dc:rights">{{ pkg_dict.license_title }}</a>
+    <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img><a class="license" href="{{ pkg_dict.license_url }}" rel="dc:rights">{{ pkg_dict.license_title }}</a>
   {% else %}
     <span property="dc:rights">{{ pkg_dict.license_title }}</span>
   {% endif %}
   {% if not text_only %}
     {#{% if pkg_dict.isopen %}#}
-      <a href="{{ pkg_dict.license_url }}" title="{{ _('This dataset satisfies the Open Definition.') }}">
+      <a class="license" href="{{ pkg_dict.license_url }}" title="{{ _('This dataset satisfies the Open Definition.') }}">
           <img class="open-data" src="/images/png/open-data.png" alt="[Open Data]" />
         </a>
     {#{% endif %}#}
-    </section>
   {% endif %}
 {% elif text_only %}
   {{ _('No License Provided') }}
 {% endif %}
+
+</div>

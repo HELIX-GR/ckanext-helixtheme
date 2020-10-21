@@ -1,51 +1,25 @@
-
-
-<li id="menu-item-data" class = "menu-item domain-item has-sub-menu" ><a href=#>{{_('The Action')}}</a>
-    <ul class="sub-menu">
-    <li><a href="https://climpact.gr/the-action/page/the-action-overview">{{_('Overview')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/page/the-action-targets">{{_('Targets')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/page/the-action-management-committee">{{_('Management Committee')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/page/the-action-scientific-committee">{{_('Scientific Committee')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/page/the-action-work-packages">{{_('Work Packages')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/page/the-action-deliverables">{{_('Deliverables')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/page/the-action-contact-us">{{_('Contact Us')}}</a></li>
-    </ul>
-</li>
-<li id="menu-item-data" class = "menu-item domain-item has-sub-menu" ><a href=#>{{_('Network')}}</a>
-    <ul class="sub-menu">
-    <li><a href="https://climpact.gr/network/page/network-members">{{_('Members')}}</a></li>
-    <li><a href="https://climpact.gr/network/page/network-join">{{_('Join')}}</a></li>
+<ul>
+    <li><a href="/" class="active">HOME</a></li>
+    <li class="has-submenu">
+        <a href="#">ABOUT</a>
+        <ul class="submenu">
+            <li><a href="https://climpact.gr/overview" class="active">OVERVIEW</a></li>
+            <li><a href="https://climpact.gr/targets">TARGETS</a></li>
+            <li><a href="https://climpact.gr/committee">MANAGEMENT COMMITTEE</a></li>
+            <li><a href="https://climpact.gr/scommittee">SCIENTIFIC COMMITTEE</a></li>
+            <li><a href="https://climpact.gr/work-packages">WORK PACKAGES</a></li>
+            <li><a href="https://climpact.gr/deliverables">DELIVERABLES</a></li>
+        </ul>
+    </li>
+    <li class="has-submenu">
+        <a href="#">NETWORK</a>
+        <ul class="submenu">
+            <li><a href="https://climpact.gr/core">CORE</a></li>
+            <li><a href="https://climpact.gr/associate">ASSOCIATE</a></li>
+            <li><a href="https://climpact.gr/join">JOIN</a></li>
+        </ul>
+    </li>
+    <li><a href="/dataset">DATA</a></li>
+    <li><a href="https://climpact.gr/services">APPLICATIONS</a></li>
+    <li><a href="https://climpact.gr/events">NEWS & EVENTS</a></li>
 </ul>
-</li>
-
-<li id="menu-item-data" class = "menu-item domain-item current-item has-sub-menu" >
-    <a href="{{ h.url('home.index') }}">Data</a>
-    <ul class="sub-menu">
-        <li><a href="{{ h.url_for(controller='package', action='search')}}">{{_('Datasets')}}</a></li>
-        <li><a href="{{ h.url_for(controller='organization', action='index')}}">{{_('Publishers')}}</a></li>
-        <li><a>{% link_for _('Communities'), controller='group', action='index', named_route='community' + '_index' %}</a></li>
-    </ul>
-</li>
-<li id="menu-item-lab" class = "menu-item domain-item has-sub-menu" >
-  <a href="https://climpact.gr/applications">{{_('Applications')}}</a>
-  <ul class="sub-menu">
-    <li><a href="https://climpact.gr/the-action/applications/page/applications-services">{{_('Services')}}</a></li>
-    <li><a href="https://climpact.gr/the-action/applications/page/applications-tools">{{_('Tools')}}</a></li>
-    <li><a href="https://lab.hellenicdataservice.gr">{{_('Lab')}}</a></li>
-</ul>
-</li>
-
-<li id="menu-item-news" class = "menu-item aux-item has-sub-menu" >
-    <a href="https://hellenicdataservice.gr/news/">{{_('News & Events')}}</a>
-
-    <ul class="sub-menu">
-        <li><a href="https://climpact.gr/news-events/page/news-events-dialogue-forum">{{_('Dialogue Forum')}}</a></li>
-        <li><a href="https://climpact.gr/news-events/page/news-events-workshops">{{_('Workshops')}}</a></li>
-        <li><a href="https://climpact.gr/news-events/page/news-events-other-events">{{_('Other Events')}}</a></li>
-        <li><a href="https://climpact.gr/news-events/page/news-events-newsletter">{{_('Newsletter')}}</a></li>
-        <li><a href="https://climpact.gr/news/">{{_('Blog')}}</a></li>
-    </ul>
-</li>
-
-
-

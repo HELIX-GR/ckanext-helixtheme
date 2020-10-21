@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block styles %}
-        {{ super() }}
+{{ super() }}
 <link rel="stylesheet" href="/css/theme.css" />
 {% endblock %}
 
@@ -9,152 +9,148 @@
 
 {%- block page -%}
 
-<body class="results-data data fixed" >
+<body class="results-data data fixed">
 
-  
+
     {%- block header %}
-        {% include "header.html" %}
+    {% include "header.html" %}
     {% endblock header-%}
 
     {%- block main %}
 
-   
+
     {# The content block allows you to replace the content of the page if needed #}
-        {%- block content %}
-            {% block maintag %}
-    
-            {% endblock %}
-            <section class="main-results-page-content">
-                  <div class="results-main-content">
-                          
-                    {% block secondary %}
-                        <section class="results-main-sidebar"> 
-                   
-                        {% block searchbar %}{% endblock %}
-          
-                
-                        {% block secondary_content %}{% endblock %}
-            
-                        </section>
-                    {% endblock secondary %}
-              
-                    
-        
-    
-            <section class="results-main-result-set">
-                {% block search_title%}
-                {% endblock  %}
-                {% block toolbar %}
-            
+    {%- block content %}
+    {% block maintag %}
+
+    {% endblock %}
+    <main class="dataset page page--sidebar">
+        <div class="container">
+            <div class="page__wrapper">
+
+                {% block secondary %}
+
+                {% block searchbar %}{% endblock %}
+
+
+                {% block secondary_content %}{% endblock %}
+
+                {% endblock secondary %}
+
+
+
+
+                <div class="page__content">
+                    {% block search_title%}
+                    {% endblock  %}
+                    {% block toolbar %}
+
                     {% block breadcrumb %}
-                        {% if self.breadcrumb_content() | trim %}
-                        <div class="breadcrumbs-pagination top">
-                            <div class="breadcrumbs" data-module="breadcrumb-overflow">
-                                {% block breadcrumb_content %}{% endblock %}
-                            </div>
-                            {% block pagination_top %}{% endblock %}
-                            {% if self.page_primary_action() | trim %}
-                            <div class="page_primary_action">
-                                {% block page_primary_action %}{% endblock %}
-                            </div>
-                            {% endif %}
+                    {% if self.breadcrumb_content() | trim %}
+                    <div class="page__content__top ">
+                        <ul class="page__breadcrumbs" data-module="breadcrumb-overflow">
+                            {% block breadcrumb_content %}{% endblock %}
+                        </ul>
+                        {% block pagination_top %}{% endblock %}
+                        {% if self.page_primary_action() | trim %}
+                        <div class="page_primary_action">
+                            {% block page_primary_action %}{% endblock %}
                         </div>
                         {% endif %}
+                    </div>
+                    {% endif %}
                     {% endblock breadcrumb %}
-                {% endblock toolbar%}
-        
-            {% block altbar %} 
-            {% endblock %}
-    
-            {% block primary_border%}
-            <div  class="main-results-border-bottom">
-            {% endblock%}
-            
-            {% block gap %}
-            
-            {% endblock %}
-            {% block main_content %}
-            
-                {# Add Order by plus result number for search #}
-            </div>
-                {% block flash %}
+                    {% endblock toolbar%}
+
+                    {% block altbar %}
+                    {% endblock %}
+
+                    {% block primary_border%}
+                        {% endblock%}
+
+                        {% block gap %}
+
+                        {% endblock %}
+                        {% block main_content %}
+
+                        {# Add Order by plus result number for search #}
+                    {% block flash %}
                     {% set flash_messages = h.flash.pop_messages() | list %}
                     <div class="flash-messages">
-                    {% for message in flash_messages %}
+                        {% for message in flash_messages %}
                         <div class="alert fade in {{ message.category }}">
-                    {{ h.literal(message) }}
+                            {{ h.literal(message) }}
                         </div>
-                    {% endfor %}
+                        {% endfor %}
                     </div>
-                {% endblock flash %}
+                    {% endblock flash %}
 
-                {#
-                The pre_primary block can be used to add content to before the
-                rendering of the main content columns of the page.
-                #}
-                {% block pre_primary %}
-                
-                {% endblock %}
+                    {#
+                    The pre_primary block can be used to add content to before the
+                    rendering of the main content columns of the page.
+                    #}
+                    {% block pre_primary %}
 
-                {% block primary %}
-            
+                    {% endblock %}
+
+                    {% block primary %}
+
                     <div class="result-items">
-                
-                    {% block primary_content %}
-                
+
+                        {% block primary_content %}
+
                         {% block page_header %}
-                        
-                            {% if self.content_action() | trim %}
-                                <div class="content_action">
-                                {% block content_action %}{% endblock %}
-                                </div>
-                            {% endif %}
-                            
-                            <div class="nav-bar">
+
+                        {% if self.content_action() | trim %}
+                        <div class="content_action">
+                            {% block content_action %}{% endblock %}
+                        </div>
+                        {% endif %}
+
+                        <div class="nav-bar">
                             {% block content_primary_nav %}{% endblock %}
-                            </div>
+                        </div>
                         {% endblock page_header %}
-                    
+
                         {% block primary_content_inner %}
                         {% endblock %}
-                    
-                  
-                    {% endblock primary_content%}
+
+
+                        {% endblock primary_content%}
                     </div>
-              
-             
-             </div>
-        </section>      
-      </div>
-    </section>
-             
-                {% endblock primary%}
-          
-            {% endblock main_content %}     
-         {% endblock content %}
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+    {% endblock primary%}
+
+    {% endblock main_content %}
+    {% endblock content %}
     {% endblock main-%}
 
 
-  
-  
-  
-  
-    {%- block footer %}
-      {% include "footer.html" %} 
-    {% endblock footer-%}
-{%- endblock page-%}
 
-{%- block scripts %}
+
+
+
+    {%- block footer %}
+    {% include "footer.html" %}
+    {% endblock footer-%}
+    {%- endblock page-%}
+
+    {%- block scripts %}
     {% resource 'base/main' %}
     {% resource 'base/ckan' %}
     {% if g.tracking_enabled %}
-      {% resource 'base/tracking.js' %}
+    {% resource 'base/tracking.js' %}
     {% endif %}
-  {{ super() }}
-  {% resource 'ckanext-helix-theme/styles' %}
-  {% resource 'ckanext-helix-theme/scripts' %}
-  {% endblock -%}
-  
-  
-  
+    {{ super() }}
+    {% resource 'ckanext-helix-theme/styles' %}
+    {% resource 'ckanext-helix-theme/scripts' %}
+    {% endblock -%}
+
+
+
 </body>

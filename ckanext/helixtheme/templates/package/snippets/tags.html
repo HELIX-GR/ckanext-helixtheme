@@ -1,9 +1,10 @@
 
-<h5 class="side-heading ">
-{{ _('Tags') }}</h5>
+<div class="page__sidebar__section">
+<div class="page__sidebar__section__title">
+{{ _('Tags') }}</div>
 {# <i class="icon-medium icon-lock"></i> #}
 {% if tags %}
-  <section class="side-tags">
+  <section class="page__sidebar__section__text">
     {#{% snippet 'snippets/tag_list.html', tags=tags, _class='tags-list well' %} #}
     {% set _class = 'tags-list well' or 'tags-list' %}
     {% block tag_list %}
@@ -18,10 +19,10 @@
                 {% endfor %}
     
 {% endblock %}
-  </section>
   {% else %}
     <section class="side-tags"></section>
   {% endif %}
+</div>
 
  
 

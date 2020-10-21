@@ -4,23 +4,23 @@
 
 {% block search_title %}
   {% if not no_title %}
-  <div class="main-results-result-count">{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</div>
+  {#<div class="main-results-result-count">{% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}</div>#}
     {% endif %}
     
    {% block search_sortby %}
    
    
     {% if sorting %}
-      <div class="datasets-order-by">
-       <label for="field-order-by">{{ _('Order by') }} </label>
+      <div class="page__sorting">
+       <span for="field-order-by">{{ _('Order by') }} </span>
         <select class="select-menu btn-group-main btn-add-dataset" form="main-form-search" id="field-order-by" data-module="order-by"  name="sort" >
           {% for label, value in sorting %}
             {% if label and value %}
               <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
             {% endif %}
           {% endfor %}
-          <span class="caret">A</span>
         </select>
+        {#<span class="arrow">↓</span>#}
       </div>
     {% endif %}   
    

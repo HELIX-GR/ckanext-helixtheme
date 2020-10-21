@@ -2,10 +2,10 @@
 
 
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part"{% link_for _('Publishers'), controller='organization', action='index', named_route=group_type + '_index' %}</a>
+  <li><a class="breadcrumbs-part"{% link_for _('Publishers'), controller='organization', action='index', named_route=group_type + '_index' %}</a></li>
   {% block breadcrumb_content_inner %}
-    <a class="breadcrumbs-part"{% link_for organization.display_name|truncate(35), controller='ckanext.helix.controllers.organization:Controller', action='read', id=organization.name, named_route=group_type + '_read' %}</a>
-    <a class="breadcrumbs-part"{% link_for _('Manage'), controller='ckanext.helix.controllers.organization:Controller', action='edit', id=organization.name, named_route=group_type + '_edit' %}</a>
+    <li><a class="breadcrumbs-part"{% link_for organization.display_name|truncate(35), controller='ckanext.helix.controllers.organization:Controller', action='read', id=organization.name, named_route=group_type + '_read' %}</a></li>
+    <li><a class="breadcrumbs-part"{% link_for _('Manage'), controller='ckanext.helix.controllers.organization:Controller', action='edit', id=organization.name, named_route=group_type + '_edit' %}</a></li>
   {% endblock %}
 {% endblock %}
 

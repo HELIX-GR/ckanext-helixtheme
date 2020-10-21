@@ -16,33 +16,33 @@ Example:
 
 
 {% with truncate=truncate or 0, url=h.url_for(controller='organization', action='read', id=organization.name) %}
-
+  <div class="page__sidebar__section">
     {% if has_context_title %}
- 
-        <h5 class="side-heading org-heading">
-{{ _('Publisher') }}</h5>
+
+    <div class="page__sidebar__section__title">
+      {{ _('Publisher') }}</div>
     {% endif %}
-      <!--<i class="icon-building"></i> -->
-    <section class="side-content">
+    <!--<i class="icon-building"></i> -->
     {% if organization %}
     {% block image %}
-        <div class="image">
-            <a href="{% url_for controller='organization', action='read',  id=organization.name %}">
-                <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png')}}" width="200" alt="{{ organization.name }}" />
-          </a>
-        </div>
+    <div class="image">
+      <a href="{% url_for controller='organization', action='read',  id=organization.name %}">
+        <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png')}}"
+          width="200" alt="{{ organization.name }}" />
+      </a>
+    </div>
     {% endblock %}
     {#<h1 class="heading">{{ organization.title or organization.name }}</h1> #}
-       {% if show_desc and organization.description %}
-        <p>
-          {{ h.markdown_extract(organization.description, 180) }}
-          {#{% link_for _('read more'), controller='organization', action='about', id=organization.name %}#}
-        </p> 
-      {% elif not organization.description%}
-        <p class="empty">{{ _('There is no description for this organization') }}</p>
-        {% endif %}
-      {% if show_nums %}
-        {#<div class="nums">
+    {% if show_desc and organization.description %}
+    <p>
+      {{ h.markdown_extract(organization.description, 180) }}
+      {#{% link_for _('read more'), controller='organization', action='about', id=organization.name %}#}
+    </p>
+    {% elif not organization.description%}
+    <p class="empty">{{ _('There is no description for this organization') }}</p>
+    {% endif %}
+    {% if show_nums %}
+    {#<div class="nums">
           <dl>
             {{ _('Followers') }}:
             {{ h.SI_number_span(organization.num_followers) }}</dd>
@@ -51,25 +51,25 @@ Example:
         <div class="follow_button">
           {{ h.follow_button('group', organization.id) }}
         </div> #}
-        <dl class='title'>
-          {{ _('Datasets') }}:
-          {{ h.SI_number_span(organization.package_count) }}
-        </dl>
-      {% endif %}
-      
-        {% if pkg and show_contact%}
-        {% block package_contact %}
-            {% snippet "snippets/contact.html", pkg=pkg %}
-        {% endblock %}
-        {% endif %}
-        
+    <dl class='title'>
+      {{ _('Datasets') }}:
+      {{ h.SI_number_span(organization.package_count) }}
+    </dl>
+    {% endif %}
 
-      {% endif %}
-        
-      </section>
-      
-      {#<div class="border-bottom-bar"></div> #}
-     {% if search_bar%} 
-      {% snippet 'snippets/search_form_top.html', form_id='organization-datasets-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
-     {% endif %}
-     {% endwith %}
+    {% if pkg and show_contact%}
+    {% block package_contact %}
+    {% snippet "snippets/contact.html", pkg=pkg %}
+    {% endblock %}
+    {% endif %}
+
+
+    {% endif %}
+
+  </div> {# sidebar-section #}
+
+  {#<div class="border-bottom-bar"></div> #}
+  {% if search_bar%}
+  {% snippet 'snippets/search_form_top.html', form_id='organization-datasets-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
+  {% endif %}
+  {% endwith %}

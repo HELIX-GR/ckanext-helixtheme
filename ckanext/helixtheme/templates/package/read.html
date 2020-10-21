@@ -2,11 +2,11 @@
 
 {% set pkg = c.pkg_dict %}
 
-{% if pkg %} 
-    {% if pkg.organization %}
-        {% set org = h.get_organization(pkg.organization.name) %}
-        {% do pkg.update(organization = org) %} 
-    {% endif %}
+{% if pkg %}
+{% if pkg.organization %}
+{% set org = h.get_organization(pkg.organization.name) %}
+{% do pkg.update(organization = org) %}
+{% endif %}
 {% endif %}
 
 {% block toolbar %}
@@ -23,22 +23,15 @@
 {% endblock %}
 
 {% block content_action %}
-    
+
 {% endblock %}
 
-{% block package_notes %}
-{% if pkg.notes %}
-        <div class="package-notes">
-          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-        </div>
-{% endif %}
-{% endblock %}
 
 {% block package_tags %}{% endblock %}
-  
-    {% block dataset_type %}
-  {% set api_controller = 'ckanext.helix.controllers.api:Controller' %}
-  {% endblock %}
+
+{% block dataset_type %}
+{% set api_controller = 'ckanext.helix.controllers.api:Controller' %}
+{% endblock %}
 
 
 {% block package_additional_info %}
@@ -46,13 +39,14 @@
 {{ super() }}
 {% endblock %}
 
- {% block secondary_content %}
+{% block secondary_content %}
+<div class="page__sidebar page__sidebar--padding-top page__sidebar--mobilebottom">
     {% if pkg.organization %}
     {% block package_organization %}
-        {% snippet "snippets/organization.html", organization=org, pkg=pkg, has_context_title=true, show_desc = false, search_bar = false  %}
+    {% snippet "snippets/organization.html", organization=org, pkg=pkg, has_context_title=true, show_desc = false, search_bar = false  %}
     {% endblock %}
-    {% endif %}   
-    
+    {% endif %}
+
     {#{% if pkg.groups %}
     {% block package_group %}
         {% snippet "snippets/group.html", group=pkg.groups %}
@@ -60,24 +54,24 @@
     {% endif %}  #}
 
     {% if pkg.closed_tag %}
-        {% snippet "package/snippets/closed_tags.html", tags=pkg.closed_tag %}
-    {% endif %}  
-    
+    {% snippet "package/snippets/closed_tags.html", tags=pkg.closed_tag %}
+    {% endif %}
+
 
     {% if pkg.tags %}
     {% block package_side_tags %}
-        {% snippet "package/snippets/tags.html", tags=pkg.tags %}
+    {% snippet "package/snippets/tags.html", tags=pkg.tags %}
     {% endblock %}
     {% endif %}
-    
-    
+
+
     {% if pkg.spatial %}
-        {% snippet "spatial/snippets/package_map_sidebar.html", extent=pkg.spatial %}
+    {% snippet "spatial/snippets/package_map_sidebar.html", extent=pkg.spatial %}
     {% endif %}
 
 
     {% block package_license %}
-        {% snippet "snippets/license.html", pkg_dict=pkg %}
+    {% snippet "snippets/license.html", pkg_dict=pkg %}
     {% endblock %}
 
     {# {% block package_developers %}
@@ -86,12 +80,20 @@
     #}
     {#{% block package_social %}
         {% snippet "snippets/social.html" %}
-    {% endblock %} #} 
-
+    {% endblock %} #}
+    <div data-module="countdown" class="climate-clock climate-clock--minimal climate-clock--border">
+        <span id="climateYear" class="climate-clock__digit"></span>
+        <span id="climateDays" class="climate-clock__digit"></span>
+        <span id="climateHours" class="climate-clock__digit"></span>
+        <span id="climateMinutes" class="climate-clock__digit"></span>
+        <span id="climateSeconds" class="climate-clock__digit"></span>
+    </div>
+</div>
 {% endblock %}
 
 
 {% block scripts %}
 {{ super() }}
 {% resource 'ckanext-helix-theme/package-side-content' %}
-{% endblock %} 
+{% resource 'ckanext-helix/countdown' %}
+{% endblock %}

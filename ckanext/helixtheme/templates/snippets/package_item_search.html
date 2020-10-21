@@ -19,33 +19,33 @@ Example:
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set modified = package.metadata_modified %}
 
-{%if package.dataset_category %} 
-  {% set dataset_category = package.dataset_category[0]%}
-  {%  if dataset_category=='GEO'%}
-    {% set tag_tooltip ='Geospatial dataset' %}
-  {%  elif dataset_category=='BIO'%}
-    {% set tag_tooltip ='Biological dataset' %}
-  {%  elif dataset_category=='STAT'%}
-    {% set tag_tooltip ='Statistical dataset' %}
-  {% endif%}
+{%if package.dataset_category %}
+{% set dataset_category = package.dataset_category[0]%}
+{%  if dataset_category=='GEO'%}
+{% set tag_tooltip ='Geospatial dataset' %}
+{%  elif dataset_category=='BIO'%}
+{% set tag_tooltip ='Biological dataset' %}
+{%  elif dataset_category=='STAT'%}
+{% set tag_tooltip ='Statistical dataset' %}
+{% endif%}
 {% endif%}
 
-<div class="result-item data">
+<div class="data__item">
   {% block package_item_content %}
-      <div class="date-of-entry">
-         {# {% if package.groups %}
+  <div class="data__item__info">
+    {# {% if package.groups %}
           {% set group = package.groups[0] %} 
           <div>{{ h.friendly_date(modified|urlize)}} @ <span> <a href={{ h.url_for(controller='group', action='read', id= group.name) }}> {{group.title|urlize }}</span></div> </a>
           {% else %}
           <div>{{ h.friendly_date(modified|urlize)}} </div>
           {% endif %}
           #}
-          {#<div>{{ h.friendly_date(modified|urlize)}} </div>#}
-          <div>{{ h.render_datetime(modified, date_format='%d-%m-%Y') }}</div>
-      </div>
+    {#<div>{{ h.friendly_date(modified|urlize)}} </div>#}
+    <div>{{ h.render_datetime(modified, date_format='%d-%m-%Y') }}</div>
+  </div>
 
-      
-      <div class="btn-save">
+
+  {#<div class="btn-save">
           <a href="#" data-toggle="tooltip" data-placement="bottom" title="Save">
              
               <img class="" src="/images/png/save.png"> 
@@ -55,67 +55,68 @@ Example:
           <a href=""  data-toggle="tooltip" data-placement="bottom" target="_blank" title="Favorite" >
             <img class="" src="/images/png/favorite.png">
           </a></div>
-          
-      <h3 class="title">
-        {% if package.private %}
-          <span class="dataset-private label label-inverse">
-            {{ _('Private') }}
-        </span>
-        {% endif %}
-        
-          {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }} 
-          {#<div class="pill data">
+        #}
+  <div class="data__item__title">
+    {% if package.private %}
+    <span class="btn--simple dataset-private label label-inverse">
+      {{ _('Private') }}
+    </span>
+    {% endif %}
+
+    {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
+  </div>
+  {#<div class="pill data">
                 DATA
           </div> #}
-        {% if package.get('state', '').startswith('draft') %}
-          <span class="label label-info">{{ _('Draft') }}</span>
-        {% elif package.get('state', '').startswith('deleted') %}
-          <span class="label label-important">{{ _('Deleted') }}</span>
-        {% endif %}
-        {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
-      </h3>
-      {% if banner %}
-        <span class="banner">{{ _('Popular') }}</span>
-      {% endif %}
-      {% if notes %}
+  {% if package.get('state', '').startswith('draft') %}
+  <span class="label label-info">{{ _('Draft') }}</span>
+  {% elif package.get('state', '').startswith('deleted') %}
+  <span class="label label-important">{{ _('Deleted') }}</span>
+  {% endif %}
+  {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
+  {% if banner %}
+  <span class="banner">{{ _('Popular') }}</span>
+  {% endif %}
+  {#{% if notes %}
       <div class="notes"> {{ notes |urlize }} </div>
-      {% endif %} 
+      {% endif %} #}
 
-      {% if package.organization %}
-      <div class="service">
-          <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}} > {{ package.organization.title|urlize }}</a>
-      </div>
-      {% endif %}
- 
-    {% block package_item_resources %}
-    {% if package.resources and not hide_resources %}
-      <div class="tags-list">
-          {%if package.dataset_category %} 
-          <a class="tag-box tag-box-category"  href="{% url_for controller='package', action='search', q=dataset_category %}" 
-           data-toggle="tooltip" data-placement="bottom" title="{{tag_tooltip}}">{{dataset_category}}</a>
-          {% endif%}
-          {% if package.organization.name =='geodata.gov.gr' %}
-         <a class="tag-box tag-box-other" data-toggle="tooltip" data-placement="bottom" 
-              title="Data available by a public authority  with an open license" >{{ _('PUBLIC') }}  </a>
-          {% endif %}
-         <a class="tag-box tag-box-other"  data-toggle="tooltip" data-placement="bottom" 
-              title="Data available with an open license">{{ _('OPEN') }} </a>
-         {% for resource in package.resources %}
-         
-          <a class="tag-box {% if loop.index==1 %}first-tag{%endif %}"
-            href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
-            data-format="{{ resource.format }}"
-           >{%if resource.format  %} {{ resource.format|upper }}
-          {% endif%}  
-        </a>
-            
-        {% endfor %}
-      </div>
-    {% endif %} {# package.resources #}
+  {% if package.organization %}
+  <div class="data__item__info">
+    <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}}>
+      {{ package.organization.title|urlize }}</a>
+  </div>
+  {% endif %}
 
-   
+  {% block package_item_resources %}
+  {% if package.resources and not hide_resources %}
+  <ul>
+    {%if package.dataset_category %}
+    <li><a class="btn btn--simple btn--noback"
+        href="{% url_for controller='package', action='search', q=dataset_category %}" data-toggle="tooltip"
+        data-placement="bottom" title="{{tag_tooltip}}">{{dataset_category}}</a></li>
+    {% endif%}
+    {% if package.organization.name =='geodata.gov.gr' %}
+    <li> <a class="btn btn--simple btn--noback" data-toggle="tooltip" data-placement="bottom"
+        title="Data available by a public authority  with an open license">{{ _('PUBLIC') }} </a></li>
+    {% endif %}
+    <li><a class="btn btn--simple" data-toggle="tooltip" data-placement="bottom"
+        title="Data available with an open license">{{ _('OPEN') }} </a></li>
+    {% for resource in package.resources %}
 
-    {% endblock %} {# package_item_resources #}
+    <li><a class="btn btn--simple btn--noback"
+        href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
+        data-format="{{ resource.format }}">{%if resource.format  %} {{ resource.format|upper }}
+        {% endif%}
+      </a></li>
 
-      {% endblock %}
+    {% endfor %}
+  </ul>
+  {% endif %} {# package.resources #}
+
+
+
+  {% endblock %} {# package_item_resources #}
+
+  {% endblock %}
 </div>

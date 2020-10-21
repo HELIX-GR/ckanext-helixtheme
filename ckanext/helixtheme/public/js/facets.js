@@ -12,24 +12,10 @@ function handleFacets() {
 
     // Initially hide facet items with index over LIMIT
     function init_hide() {
-        var cat_list = $('.results-main-sidebar .switches');
+        var cat_list = $('.page__sidebar .switches');
         var search_form = $('.landing-search-form');
         cat_list.each(function (index) {
-            $(this).addClass('li-hidden');
-
-            var list = $(this).find('label');
-            list.each(function (index) {
-                if (index > LIMIT) {
-                    $(this).css("display", "none");
-                }
-                //if (index == LIMIT) {
-                //    $(this).addClass("no-bottom-border");
-                //}
-                //checkboxes =  $(this).find('input');
-                //texts = $(this).find('a');
-                
-
-            });
+           
 
             // add onclick checkbox search
             var list = $(this).find('input');
@@ -39,8 +25,10 @@ function handleFacets() {
                 });
             });
         });
+
+
         // turn to uppercase and remove greek accent 
-        var org_switch = $('.results-main-sidebar .organizations .switches');
+        var org_switch = $('.page__sidebar .organizations .switches');
         var list2 = org_switch.find('label');
         list2.each(function (index) {
             //console.log($(this).find('a').text().toUpperCase().replace('Ά', 'Α').replace('Έ', 'Ε').replace('Ή', 'Η').replace('Ί', 'Ι').replace('Ό', 'Ο').replace('Ύ', 'Υ').replace('Ώ', 'Ω'));
@@ -49,6 +37,13 @@ function handleFacets() {
     };
     init_hide();
 
+    //Climpact
+    $('.page__sidebar__section__toggle').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).parent().toggleClass('open');
+        $(this).parent().find('.page__sidebar__filters').slideToggle();
+      });
 
     // Facet Show more/less handling
     function show_more(e) {

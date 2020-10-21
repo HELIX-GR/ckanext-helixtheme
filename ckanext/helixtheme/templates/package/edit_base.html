@@ -6,7 +6,7 @@
 {% block secondary_content %}
 
 {% block paint %}{% endblock %}
-<div class="alt-side-style">
+<div class="page__sidebar page__sidebar--padding-top page__sidebar--mobileflex">
     {% snippet 'package/snippets/info.html', pkg=pkg, hide_follow_button=true %}
 </div>
 {% endblock %}
@@ -18,14 +18,14 @@
     {% set dataset = h.dataset_display_name(pkg) %}
     {% if pkg.organization %}
       {% set organization = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
-      <a class="breadcrumbs-part"{% link_for _('Publishers'), controller='organization', action='index' %}</a>
-      <a class="breadcrumbs-part"{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</a>
+      <li><a class="breadcrumbs-part"{% link_for _('Publishers'), controller='organization', action='index' %}</a></li>
+        <li><a class="breadcrumbs-part"{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</a></li>
     {% else %}
-      <a class="breadcrumbs-part"{% link_for _('Datasets'), controller='package', action='search' %}</a>
+    <li><a class="breadcrumbs-part"{% link_for _('Datasets'), controller='package', action='search' %}</a></li>
     {% endif %}
-    <a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(30), controller='package', action='read', id=pkg.name %}</a>
+    <li><a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(30), controller='package', action='read', id=pkg.name %}</a></li>
   {% else %}
-    <a class="breadcrumbs-part" {% link_for _('Datasets'), controller='package', action='search' %}</a>
+  <li><a class="breadcrumbs-part" {% link_for _('Datasets'), controller='package', action='search' %}</a></li>
     {#<a class="breadcrumbs-part" {{ _('Create Dataset') }}</a> #}
   {% endif %}
    
@@ -40,7 +40,7 @@
 
 {% block content_primary_nav %}
     <div class="action">
-      {% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn btn-manage pull-right read', icon='eye' %}
+      {% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn--simple btn btn-manage pull-right read', icon='eye' %}
     </div>
    <div class="nav-menu">
   {{ h.build_nav_icon('dataset_edit', _('Edit metadata'), id=pkg.name) }}
