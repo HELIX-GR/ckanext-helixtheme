@@ -3,17 +3,13 @@
 
 <ul class="header__lang">
     {% for locale in h.get_available_locales() %}
-    {% if locale.identifier == current_lang %}
-    <li><a href="{{ h.url_for(current_url, locale=locale) }}">
-                {{ locale.display_name|truncate(2,True, '')|upper or locale.english_name|truncate(2,True, '')|upper }}</a>
-    </li>
-    {% endif %}
-    {% endfor %}
-
-    {% for locale in h.get_available_locales() %}
     {% if locale.identifier != current_lang %}
-    <li value="{% url_for current_url, locale=locale %}"><a href="{{ h.url_for(current_url, locale=locale) }}">
-                {{ locale.display_name|truncate(2,True, '')|upper   or locale.english_name|truncate(2,True, '') |upper  }}</a>
+    <li><a  href="{{ h.url_for(current_url, locale=locale) }}">
+            {{ locale.display_name|truncate(2,True, '')|upper or locale.english_name|truncate(2,True, '')|upper }}</a>
+    </li>
+    {% else %}
+    <li value="{% url_for current_url, locale=locale %}"><a class="active" href="{{ h.url_for(current_url, locale=locale) }}">
+            {{ locale.display_name|truncate(2,True, '')|upper   or locale.english_name|truncate(2,True, '') |upper  }}</a>
     </li>
     {% endif %}
     {% endfor %}
