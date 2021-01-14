@@ -81,13 +81,6 @@
     {#{% block package_social %}
         {% snippet "snippets/social.html" %}
     {% endblock %} #}
-    <div data-module="countdown" class="climate-clock climate-clock--minimal climate-clock--border">
-        <span id="climateYear" class="climate-clock__digit"></span>
-        <span id="climateDays" class="climate-clock__digit"></span>
-        <span id="climateHours" class="climate-clock__digit"></span>
-        <span id="climateMinutes" class="climate-clock__digit"></span>
-        <span id="climateSeconds" class="climate-clock__digit"></span>
-    </div>
 </div>
 {% endblock %}
 
@@ -95,5 +88,4 @@
 {% block scripts %}
 {{ super() }}
 {% resource 'ckanext-helix-theme/package-side-content' %}
-{% resource 'ckanext-helix/countdown' %}
 {% endblock %}

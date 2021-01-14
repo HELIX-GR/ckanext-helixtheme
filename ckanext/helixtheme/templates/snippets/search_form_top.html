@@ -79,13 +79,6 @@
 
 
 
-<div data-module="countdown" class="climate-clock climate-clock--minimal climate-clock--border">
-  <span id="climateYear" class="climate-clock__digit"></span>
-  <span id="climateDays" class="climate-clock__digit"></span>
-  <span id="climateHours" class="climate-clock__digit"></span>
-  <span id="climateMinutes" class="climate-clock__digit"></span>
-  <span id="climateSeconds" class="climate-clock__digit"></span>
-</div>
 
 {% if show_empty and count == 0 %}
 {% trans %}
@@ -99,5 +92,3 @@
 {% endtrans %}
 {% endif %}
 
-
-{% resource 'ckanext-helix/countdown' %}
