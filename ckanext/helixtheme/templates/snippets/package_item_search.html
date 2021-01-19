@@ -17,7 +17,7 @@ Example:
 {% set truncate_title = truncate_title or 80 %}
 {% set title = package.title or package.name %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
-{% set modified = package.metadata_modified %}
+{% set created = package.metadata_created %}
 
 {%if package.dataset_category %}
 {% set dataset_category = package.dataset_category[0]%}
@@ -41,7 +41,7 @@ Example:
           {% endif %}
           #}
     {#<div>{{ h.friendly_date(modified|urlize)}} </div>#}
-    <div>{{ h.render_datetime(modified, date_format='%d-%m-%Y') }}</div>
+    <div>Ημερομηνία ανάρτησης:    {{ h.render_datetime(created, date_format='%d-%m-%Y') }}</div>
   </div>
 
 
@@ -88,9 +88,15 @@ Example:
   </div>
   {% endif %}
 
+  {% if package.notes_optional %}
+  <div class='data__item__info__notes'> 
+    {{ h.truncate(package.notes_optional, 565) }}
+  </div>
+  {% endif %}
+
   {% block package_item_resources %}
   {% if package.resources and not hide_resources %}
-  <ul>
+  {#<ul>
     {%if package.dataset_category %}
     <li><a class="btn btn--simple btn--noback"
         href="{% url_for controller='package', action='search', q=dataset_category %}" data-toggle="tooltip"
@@ -111,7 +117,7 @@ Example:
       </a></li>
 
     {% endfor %}
-  </ul>
+  </ul>#}
   {% endif %} {# package.resources #}
 
 
