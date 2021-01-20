@@ -153,7 +153,7 @@
           </div>
 
           {% for package in h.get_translated_dataset_groups(h.featured_datasets())[:4] %}
-          {% set title = package.title or package.name %}
+          {% set title = package.title_optional or package.title %}
           {% set truncate = truncate or 180 %}
           {% set truncate_title = truncate_title or 50 %}
           {% set modified = package.metadata_modified %}

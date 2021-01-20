@@ -1,15 +1,21 @@
 {% ckan_extends %}
 
+{% set dataset_title =  pkg.title_optional or pkg.title %}
+
+{%- block title -%}
+  {{dataset_title}} - Σύνολο δεδομένων
+{% endblock %}
+
 {% block breadcrumb_content %}
 
   {% if pkg %}
-    {% set dataset = pkg.title or pkg.name %}
+    
     {% if pkg.organization %}
 
 <li><a class="breadcrumbs-part" {% link_for _('Publishers'), controller='organization', action='index' %}</a> </li>
   <li><a class="breadcrumbs-part" {% link_for org.title|truncate(50) or org.name, controller='organization', action='read', id=pkg.organization.name %}</a></li>
     {% endif %}
-    <li><a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(50), controller='package', action='read', id=pkg.name %}</a></li>
+    <li><a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset_title|truncate(50), controller='package', action='read', id=pkg.name %}</a></li>
   {% else %}
   <li><a class="breadcrumbs-part" {% link_for _('Datasets'), controller='package', action='search' %}</a></li>
     <li><a class="breadcrumbs-part" href=""{{ _('Create Dataset') }}</a></li>
@@ -21,7 +27,7 @@
 
 
   <h1 class="package-title">
-{{ pkg.title or pkg.name }}
+{{ dataset_title }}
 </h1>
 <div>
 <div class="btn-favorite">

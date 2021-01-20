@@ -1489,7 +1489,9 @@ a.tag:hover{
     width: 35%;
     border-top: 2px #4E59A4 solid;
 }
-.additional-info{
+.additional-info .table-title{
+
+    color: #FFF;
 }
 .additional-info h3{
     margin-top:6px;

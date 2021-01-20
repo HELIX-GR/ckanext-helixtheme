@@ -15,7 +15,7 @@ Example:
 #}
 {% set truncate = truncate or 230 %}
 {% set truncate_title = truncate_title or 80 %}
-{% set title = package.title or package.name %}
+{% set title = package.title_optional or package.title %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set created = package.metadata_created %}
 
@@ -41,7 +41,7 @@ Example:
           {% endif %}
           #}
     {#<div>{{ h.friendly_date(modified|urlize)}} </div>#}
-    <div>Ημερομηνία ανάρτησης:    {{ h.render_datetime(created, date_format='%d-%m-%Y') }}</div>
+    <div>{{_('Publication:')}} {{ h.render_datetime(created, date_format='%d-%m-%Y') }}</div>
   </div>
 
 
