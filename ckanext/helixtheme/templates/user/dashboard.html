@@ -25,19 +25,19 @@
 
 
 
-        <section class="results-main-result-set center-content">
+        <section class="results-main-result-set center-content page__content">
             {% block search_title%}
             {% endblock %}
             {% block toolbar %}
 
             {% block breadcrumb %}
             {% if self.breadcrumb_content() | trim %}
-            <div class="breadcrumbs-pagination top">
-                <div class="breadcrumbs" data-module="breadcrumb-overflow">
+            <div class="page__content__top ">
+                <ul class="page__breadcrumbs" data-module="breadcrumb-overflow">
                     {% block breadcrumb_content %}
-                        <a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}">{{_('Dashboard')}}</a>
+                        <li><a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}">{{_('Dashboard')}}</a></li>
                     {% endblock %}
-                </div>
+                </ul>
                 {% block pagination_top %}{% endblock %}
                 {% if self.page_primary_action() | trim %}
                 <div class="page_primary_action">
@@ -53,7 +53,6 @@
             {% endblock %}
 
             {% block primary_border%}
-            <div class="main-results-border-bottom">
                 {% endblock%}
 
                 {% block gap %}
@@ -62,7 +61,6 @@
                 {% block main_content %}
 
                 {# Add Order by plus result number for search #}
-            </div>
             {% block flash %}
             {% set flash_messages = h.flash.pop_messages() | list %}
             <div class="flash-messages">
@@ -84,7 +82,7 @@
 
             {% block primary %}
             {% block page_header %}
-            <section class="results-main-result-set dashboard">
+            <section class="results-main-result-set dashboard page__content">
 
                 <div class="page-header">
                     <div class="content_action">
@@ -93,7 +91,7 @@
                     </div>
                 </div>
                 <div class=result-items>
-                    <ul class="nav-bar">
+                    <ul class="nav-bar nav-menu">
                         <div class="nav-menu">
                             {% block page_header_navtab_links %}
                             {{ h.build_nav_icon('datasets', _('My Datasets'),controller='ckanext.helix.controllers.user:UserController') }}

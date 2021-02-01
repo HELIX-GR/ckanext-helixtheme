@@ -1,7 +1,7 @@
 <ul>
     <li><a href="https://climpact.gr/main/" >{{_('Home')}}</a></li>
     <li class="has-submenu">
-        <a href="#">{{_('Το Πρόγραμμα Climpact')}}</a>
+        <a href="https://climpact.gr/main/">{{_('Το Πρόγραμμα Climpact')}}</a>
         <ul class="submenu">
             <li><a href="https://climpact.gr/about/overview">{{_('Overview')}}</a></li>
             <li><a href="https://climpact.gr/about/targets">{{_('Targets')}}</a></li>
@@ -19,7 +19,11 @@
             <li><a href="https://climpact.gr/network/join">{{_('Join')}}</a></li>
         </ul>
     </li>
-    <li><a href="/dataset" class="active">{{_('Data')}}</a></li>
+    <li class="has-submenu"><a href="/dataset" class="active">{{_('Data')}}</a>
+        <ul class="submenu">
+            <li><a href="/organization">{{_('Publishers')}}</a></li>
+        </ul>
+    </li>
     <li ><a href="https://climpact.gr/applications/overview">{{_('Applications')}}</a>
     </li>
     <li class="has-submenu"><a href="#">{{_('News & Events')}}</a>

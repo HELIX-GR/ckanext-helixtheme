@@ -2359,3 +2359,8 @@ blockquote {
     margin: 1em 0em !important;
 }
 
+.resource-views-empty{ 
+    color: #C9E9FC;
+    margin-top: 50px;
+    font-style: italic;
+}
