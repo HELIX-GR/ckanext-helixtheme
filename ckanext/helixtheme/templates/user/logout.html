@@ -4,3 +4,16 @@
 
 {% block paint %}{% endblock %}
 {% endblock %}
+
+{% block primary_content %}
+<section class="module">
+    <div class="module-content">
+        <h1 class="page-heading">
+
+        </h1>
+        <div class="logout">{% block page_heading %}{{ _('Logged Out') }}{% endblock %}
+            <p >{% trans %}You are now logged out.{% endtrans %}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
