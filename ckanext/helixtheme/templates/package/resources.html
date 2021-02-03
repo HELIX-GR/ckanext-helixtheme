@@ -14,7 +14,7 @@
       {% set can_edit = h.check_access('package_update', {'id':pkg.id }) %}
       <div class="package-resource-list">
       {% for resource in pkg.resources %}
-        {% snippet 'package/snippets/resource_item.html', pkg=pkg, res=resource, url_is_edit=true, can_edit=can_edit %}
+        {% snippet 'package/snippets/resource_item.html',in_resource=true, pkg=pkg, res=resource, url_is_edit=true, can_edit=can_edit %}
       {% endfor %}
       </div>
     </div>
