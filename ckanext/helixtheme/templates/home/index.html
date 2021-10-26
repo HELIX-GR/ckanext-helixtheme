@@ -140,62 +140,71 @@
   {% snippet 'home/snippets/search.html' %} {# includes <section> #}
 
 
-    <h3 class="container-header">
-      {{_('Hardmin supports your research...')}}
-    </h3>
+    
+    <section class="landing-page-panel">
+      <div class="info-container container-fluid">
+        <div class="row">
+    
+          <div class="col-sm-12  col-xs-4">
+            <h3 class="container-header">
+              {{_('Hardmin supports your research...')}}
+            </h3>
+          </div>
+    
+          <div class="col-sm-3 col-xs-12">
+            <div class="info-block">
+              <img class="info-icon" src="images/png/icons/search.png">
+              <h3 class="block-header">
+                {{_('Search & discover')}}
+              </h3>
+              <p class="info-item">
+                {{_('Search & discover data and materials to support your research project')}}
+              </p>
+            </div>
+          </div>
+          <img class="arrow" src="images/svg/next-arrow.svg">
+    
+    
+          <div class="col-sm-3 col-xs-12">
+            <div class="info-block">
+              <img class="info-icon" src="images/png/icons/upload.png">
+              <h3 class="block-header">
+                {{_('Data submission')}}
+              </h3>
+              <p class="info-item">
+                {{_('Secure storage of your research data with simultaneous DOI attribution')}}
+              </p>
+            </div>
+          </div>
 
-    <div class="info-container">
-
-      <div>
-        <div class="info-block">
-          <img class="info-icon" src="images/png/icons/search.png">
-          <h3 class="block-header">
-            {{_('Search & discover')}}
-          </h3>
-          <p class="info-item"> 
-            {{_('Search & discover data and materials to support your research project')}}
-          </p>
+          <img class="arrow" src="images/svg/next-arrow.svg">
+    
+          <div class="col-sm-3 col-xs-12">
+            <div class="info-block locks">
+              <img class="info-icon locks" src="images/png/icons/locks.png">
+              <h3 class="block-header">
+                {{_('Data access control')}}
+              </h3>
+              <p class="info-item">
+                {{_('Multiple licenses / open access or controlled access')}}
+              </p>
+            </div>
+          </div>
+          <img class="arrow locks" src="images/svg/next-arrow.svg">
+          <div class="col-sm-3 col-xs-12">
+            <div class="info-block">
+              <img class="info-icon" src="images/png/icons/file.png">
+              <h3 class="block-header">
+                {{_('Data reference')}}
+              </h3>
+              <p class="info-item">
+                {{_('By storing your data in HARDMIN you promote the discovery of your data!')}}
+              </p>
+            </div>
+          </div>
         </div>
-        <img class="arrow" src="images/svg/next-arrow.svg">
       </div>
-
-
-      <div>
-        <div class="info-block">
-          <img class="info-icon" src="images/png/icons/upload.png">
-          <h3 class="block-header">
-            {{_('Data submission')}}
-          </h3>
-          <p class="info-item"> 
-            {{_('Secure storage of your research data with simultaneous DOI attribution')}}
-          </p>
-        </div>
-        <img class="arrow" src="images/svg/next-arrow.svg">
-      </div>
-
-      <div>
-        <div class="info-block locks">
-          <img class="info-icon locks" src="images/png/icons/locks.png">
-          <h3 class="block-header">
-            {{_('Data access control')}}
-          </h3>
-          <p class="info-item"> 
-            {{_('Multiple licenses / open access or controlled access')}}
-          </p>
-        </div>
-        <img class="arrow" src="images/svg/next-arrow.svg">
-      </div>
-
-      <div class="info-block">
-        <img class="info-icon" src="images/png/icons/file.png">
-        <h3 class="block-header">
-          {{_('Data reference')}}
-        </h3>
-        <p class="info-item"> 
-          {{_('By storing your data in HARDMIN you promote the discovery of your data!')}}
-        </p>
-      </div>
-    </div>
+    </section>
 
     <section class="data-landing-page-content">
 
