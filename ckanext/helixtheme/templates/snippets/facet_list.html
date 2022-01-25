@@ -79,7 +79,6 @@ Parameter to hide organization/group facet section when only one item is present
 {% endif %}
 
 
-
 {% if not hide_section and items|length >= 1 %}
   {% if items or not hide_empty %} 
   <div class="{{ facet_class  }} param-box page__sidebar__section open">
@@ -90,7 +89,6 @@ Parameter to hide organization/group facet section when only one item is present
     </div>
     <ul class="page__sidebar__filters switches">
       {# group sizes on resource size facet #}
-      
       {% if name=='res_size' %}
         {% set less_1 = [0]%}
         {% set less_10 = [0]%}
@@ -116,7 +114,7 @@ Parameter to hide organization/group facet section when only one item is present
                {{_('Less than')}} 1MB 
               </a>#}
               <label for="switch-{{total_count[0]}}"></label>
-              <label for="switch-{{total_count[0]}}" class="text-label">{{_('Less than')}} 1MB <span>{{ count }}</span> </label>
+              <label for="switch-{{total_count[0]}}" class="text-label">< 1MB  <span>{{ count }}</span> </label>
             </li>
           {% if total_count.append(total_count.pop() + 1) %}{% endif %}
           <li for="switch-{{total_count[0]}}">
@@ -158,9 +156,12 @@ Parameter to hide organization/group facet section when only one item is present
       {% else %}
         {% for item in items %} {% if total_count.append(total_count.pop() + 1) %}{% endif %} 
           {% set href="#" %}
-          {#{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active
-          else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
-          #}{% set label = label_function(item) if label_function else item.display_name %}
+         
+          {% set label = label_function(item) if label_function else item.display_name %}
+
+          {% if name=='organization' and h.lang()=='el' %}
+            {% set label = h.get_org_greek_title(item.name) %}
+          {% endif %}
           {#{% set label_truncated = h.truncate(label, 70) if not label_function else label %} #}
           {% set label_truncated = label %}
           {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}

@@ -53,7 +53,7 @@
             <input type="checkbox" form="advanced-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
               name=""  value="1">
             <a title="{{ label if label != label_truncated else '' }}">
-              Less than 1MB 
+              < 1MB 
             </a>
         </label>
         {% if total_count.append(total_count.pop() + 1) %}{% endif %}

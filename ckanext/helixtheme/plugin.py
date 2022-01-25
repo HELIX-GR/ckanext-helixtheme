@@ -285,6 +285,8 @@ def get_translated_dataset_groups(datasets):
         if groups:
             terms.add(groups[0].get('title'))
         if organization:
+            org = toolkit.get_action('organization_show')({}, {'id': organization.get('id')})
+            organization['title_greek'] =  org.get('title_greek')
             terms.add(organization.get('title'))
     # Look up translations for all datasets in one db query.
     translations = toolkit.get_action('term_translation_show')(

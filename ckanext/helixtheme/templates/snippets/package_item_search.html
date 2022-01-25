@@ -85,9 +85,14 @@ Example:
       {% endif %} #}
 
   {% if package.organization %}
+    {% if h.lang()=='el' %}
+      {% set org_name = package.organization.title_greek %}
+    {% elif h.lang()=='en'%} here
+      {% set org_name = package.organization.title %}  
+    {% endif %}
   <div class="data__item__info">
     <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}}>
-      {{ package.organization.title|urlize }}</a>
+      {{ org_name|urlize }}</a>
   </div>
   {% endif %}
 
