@@ -11,9 +11,13 @@
   {% if pkg %}
     
     {% if pkg.organization %}
-
+      {% if h.lang()=='el' %}
+        {% set org_name = h.get_org_greek_title(org.name) %}
+      {% elif h.lang()=='en'%}
+        {% set org_name = org.title %}  
+      {% endif %}
 <li><a class="breadcrumbs-part" {% link_for _('Publishers'), controller='organization', action='index' %}</a> </li>
-  <li><a class="breadcrumbs-part" {% link_for org.title|truncate(50) or org.name, controller='organization', action='read', id=pkg.organization.name %}</a></li>
+  <li><a class="breadcrumbs-part" {% link_for org_name|truncate(50) or org.name, controller='organization', action='read', id=pkg.organization.name %}</a></li>
     {% endif %}
     <li><a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset_title|truncate(50), controller='package', action='read', id=pkg.name %}</a></li>
   {% else %}

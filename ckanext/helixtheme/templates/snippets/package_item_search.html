@@ -86,8 +86,8 @@ Example:
 
   {% if package.organization %}
     {% if h.lang()=='el' %}
-      {% set org_name = package.organization.title_greek %}
-    {% elif h.lang()=='en'%} here
+      {% set org_name = h.get_org_greek_title(package.organization.name) %}
+    {% elif h.lang()=='en'%}
       {% set org_name = package.organization.title %}  
     {% endif %}
   <div class="data__item__info">
